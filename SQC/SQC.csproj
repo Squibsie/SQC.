@@ -52,9 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrunkPassenger.cs" />
+    <Compile Include="NCPattient.cs" />
     <Compile Include="FareEvader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Protest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

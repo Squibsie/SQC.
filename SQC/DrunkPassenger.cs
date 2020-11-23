@@ -5,7 +5,7 @@ using System;
 using System.Threading.Tasks;
 
 
-namespace Port_Authority_Callouts
+namespace SQC
 {
     [CalloutProperties("[SQC] Drunk Transit Passenger", "Squibsie", "1.0")]
     public class DrunkSubway : FivePD.API.Callout
@@ -64,7 +64,7 @@ namespace Port_Authority_Callouts
             this.InitBlip();
 
             DrunkSuspect = await SpawnPed(PedHash.Salton02AMM, this.Location, 12);
-            this.DrunkSuspect.Task.WanderAround(this.Location, 15f);
+            
         }
 
         public override void OnStart(Ped player)
