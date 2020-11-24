@@ -1,4 +1,4 @@
-# SQC - Squibies Callouts
+# SQC - Squibsies Callouts
 
 This is a collection of callouts for the popular GTAV mod FivePD (built upon FiveM).
 I havee made ethe decision to release the source of my callouts to hopefully help other callout developers and community members create further content for the community. I will however state, I am not a professional coder or anything. I do not profess that this is the 'right' way to do things, it just works. If you have improvements, please do explain to me!
