@@ -6,37 +6,37 @@ using System.Threading.Tasks;
 using System.Dynamic;
 using FivePD.API.Utils;
 
-namespace Port_Authority_Callouts
+namespace SQC
 {
     [CalloutProperties("[SQC]Fare Evader", "Squibsie", "1.0")]
     class FareEvader : FivePD.API.Callout
     {
-        new Random random = new Random();
+        Random random = new Random();
 
         int jobSelect;
 
-        new Vector3[] staffCoords = new Vector3[3]
+        Vector3[] staffCoords = new Vector3[3]
         {
             new Vector3(-842.679f, -126.332f, 28.185f),
             new Vector3(258.7f, -1204.958f, 29.289f),
             new Vector3(-1022.83f, -2751.468f, 0.8f)
         };
 
-        new float[] staffHeading = new float[3]
+        float[] staffHeading = new float[3]
         {
             121.194f,
             316.902f,
             139.17f
         };
 
-        new Vector3[] suspectCoords = new Vector3[3]
+        Vector3[] suspectCoords = new Vector3[3]
         {
             new Vector3(-842.98f, -125.074f, 28.185f),
             new Vector3(260.882f, -1204.176f, 29.289f),
             new Vector3(-1024.422f, -2752.422f, 0.8f)
         };
 
-        new float[] suspectHeading = new float[3]
+        float[] suspectHeading = new float[3]
         {
             214.439f,
             85.063f,
