@@ -54,7 +54,7 @@
     <Compile Include="DrunkPassenger.cs" />
     <Compile Include="FareEvader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Protest.cs" />
+    <Compile Include="CovidBreach.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
