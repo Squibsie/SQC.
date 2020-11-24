@@ -19,8 +19,8 @@ namespace SQC
 
         public CovidBreach()
         {
-            float x = random.Next(100, 200);
-            float y = random.Next(100, 200);
+            float x = random.Next(100, 300);
+            float y = random.Next(100, 300);
             InitInfo(World.GetNextPositionOnStreet(Game.PlayerPed.GetOffsetPosition(new Vector3(x, y, 0f))));
 
             this.ShortName = "Covid Breach";
@@ -28,7 +28,7 @@ namespace SQC
             this.ResponseCode = 1;
 
             /* How close the player needs to be to start the action (OnStart())*/
-            this.StartDistance = 20f; // 30 feet? metres? unit...
+            this.StartDistance = 50f; // 30 feet? metres? unit...
         }
 
         public async override Task OnAccept()
@@ -43,6 +43,10 @@ namespace SQC
         public override void OnStart(Ped closest)
         {
             Player = closest;
+
+            
+
+            var data = CovidPatient.GetData();
 
             CovidPatient.AttachBlip();
 
@@ -84,6 +88,7 @@ namespace SQC
                     "Thankfully not!"
                 };
 
+                
                 AddPedQuestion(CovidPatient, covidQ1);
                 AddPedQuestion(CovidPatient, covidQ2);
                 AddPedQuestion(CovidPatient, covidQ3);
@@ -163,14 +168,12 @@ namespace SQC
                 AddPedQuestion(CovidPatient, covidQ3);
 
             }
-            else if (dice > 75 && dice < 101)
+            else if (dice > 0 && dice < 101)
             {
                 //Outcome 4 - Covid Denier
                 CitizenFX.Core.Debug.WriteLine("Covid Denier");
 
-                Timer();
-                suspectActive = true;
-                Events.OnPedArrested += OnPedArrested;
+                suspectActive = true;                
 
                 PedQuestion covidQ1 = new PedQuestion();
                 covidQ1.Question = "Have you tested positive for covid recently?";
@@ -204,32 +207,6 @@ namespace SQC
                 AddPedQuestion(CovidPatient, covidQ3);
             }
 
-        }
-
-        private async Task Timer()
-        {
-            int timer = 10000;
-            while (timer > 0)
-            {
-                await BaseScript.Delay(1000);
-                timer -= 1000;
-            }
-            if (suspectActive && timer <= 0)
-            {
-                Impatience();
-            }
-        }
-
-        public async Task OnPedArrested(Ped ped)
-        {
-            suspectActive = false;
-        }
-
-        public async Task Impatience()
-        {
-            ShowDialog("Are you quite finished? I'm not hanging about anymore!", 2500, 15f);
-            await BaseScript.Delay(500);
-            CovidPatient.Task.FleeFrom(Player);
         }
 
     }
