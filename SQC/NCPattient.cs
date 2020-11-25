@@ -118,7 +118,7 @@ namespace SQC
             ShowDialog("[Patient] *Sobbing*", 3000, 20f);
             await BaseScript.Delay(4000);
             ShowDialog("[You] Sir? Do you want to come out for me?", 3000, 20f);
-            await BaseScript.Delay(1500);
+            await BaseScript.Delay(3000);
 
             int dice = random.Next(0, 100);
             if (dice <= 20)

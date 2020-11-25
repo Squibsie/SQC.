@@ -44,6 +44,8 @@ namespace SQC
             new Vector3(433.321f,-654.101f,28.756f)
         };
 
+        bool suspectActive;
+
         public DrunkSubway()
         {
             jobSelect = random.Next(0, 24);
@@ -72,6 +74,11 @@ namespace SQC
             base.OnStart(player);
             DrunkSuspect.AttachBlip();
 
+            suspectActive = true;
+
+            base.Tick += IsPedRestrained;
+
+
             int dice = random.Next(0, 100);
 
             if (dice < 25)
@@ -95,11 +102,11 @@ namespace SQC
             this.DrunkSuspect.Task.FleeFrom(player);
 
             await BaseScript.Delay(random.Next(5500, 7500));
-            int x = random.Next(1, 100 + 1);
+            int dice = random.Next(1, 100 + 1);
 
             TaskSequence sequence = new TaskSequence();
             bool changedTask = false;
-            if (x <= 30)
+            if (dice <= 30 && suspectActive)
             {
                 /* 30 % to attack the closest ped */
                 sequence.AddTask.FightAgainst(GetClosestPed(this.DrunkSuspect));
@@ -107,7 +114,7 @@ namespace SQC
                 sequence.AddTask.FleeFrom(player);
                 changedTask = true;
             }
-            else if (x > 30 && x < 50)
+            else if (dice > 30 && dice < 50 && suspectActive)
             {
                 /* 20% to attack the player */
                 sequence.AddTask.FightAgainst(player);
@@ -129,17 +136,17 @@ namespace SQC
         }
         public async Task RandomBehaviour()
         {
-            await BaseScript.Delay(random.Next(4000, 6500));
+            await BaseScript.Delay(this.random.Next(4000, 6500));
 
-            int x = random.Next(1, 100 + 1);
-            if (x <= 25)
+            int dice = this.random.Next(1, 100 + 1);
+            if (dice <= 25 && suspectActive)
             {
                 ClearPedTasks(this.DrunkSuspect.Handle);
                 ClearPedTasksImmediately(this.DrunkSuspect.Handle);
 
                 this.DrunkSuspect.Task.FightAgainst(GetClosestPed(DrunkSuspect));
             }
-            else if (x > 25 && x <= 40)
+            else if (dice > 25 && dice <= 40 && suspectActive)
             {
                 ClearPedTasks(this.DrunkSuspect.Handle);
                 ClearPedTasksImmediately(this.DrunkSuspect.Handle);
@@ -184,6 +191,14 @@ namespace SQC
         public void Surrender()
         {
             DrunkSuspect.Task.HandsUp(-1);
+        }
+
+        public async Task IsPedRestrained()
+        {
+            if (DrunkSuspect.IsCuffed)
+            {
+                suspectActive = false;
+            }
         }
     }
 }

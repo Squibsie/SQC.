@@ -15,8 +15,6 @@ namespace SQC
         Ped Player;
         Random random = new Random();
 
-        bool suspectActive;
-
         public CovidBreach()
         {
             float x = random.Next(100, 300);
@@ -168,12 +166,10 @@ namespace SQC
                 AddPedQuestion(CovidPatient, covidQ3);
 
             }
-            else if (dice > 0 && dice < 101)
+            else if (dice > 75 && dice < 101)
             {
                 //Outcome 4 - Covid Denier
-                CitizenFX.Core.Debug.WriteLine("Covid Denier");
-
-                suspectActive = true;                
+                CitizenFX.Core.Debug.WriteLine("Covid Denier");                
 
                 PedQuestion covidQ1 = new PedQuestion();
                 covidQ1.Question = "Have you tested positive for covid recently?";
