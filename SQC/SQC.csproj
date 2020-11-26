@@ -56,6 +56,7 @@
     <Compile Include="FareEvader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CovidBreach.cs" />
+    <Compile Include="RobberyAndSearch.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

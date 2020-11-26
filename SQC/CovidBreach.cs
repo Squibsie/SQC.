@@ -42,9 +42,7 @@ namespace SQC
 
         public override void OnStart(Ped closest)
         {
-            Player = closest;
-
-            
+            Player = closest;            
 
             var data = CovidPatient.GetData();
 
